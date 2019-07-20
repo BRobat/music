@@ -1,0 +1,41 @@
+hush
+
+setcps (120/120)
+
+do
+    let mt = "[14 12 11 10]/8"
+    let ss0 = ""
+    let ss1 = "[0]"
+    let ss2 = "[8 10 ~ 11 7 4 ~ 3]/2"
+    let ss3 = "[[[14 14 26 ~] [12 12 26 ~] [11 11 26 ~] [10 10 26 ~]]/4 [21 ~ ~ 20] [~ 19 ~ 17] [~ 14 17 19]]/2"
+    let bs0 = ""
+    let bs1 = "[[14 ~ 14 ~] [14 14 ~ 14] [~ 14 ~ 14] [14 14 14 14]]/2"
+    let bd0 = ""
+    let bd1 = "[[0 ~ ~ ~] [0 0 ~ ~] [0 0 ~ 0] [0 ~ ~ ~]]/2"
+    let sn0 = ""
+    let sn1 = "[~ 1]*2"
+    let hh0 = ""
+    let hh1 = "[3]*8"
+    let synth = ss3
+    let basss = mt + bs1
+    let drums = bd1
+    let snare = sn1
+    let hatss = hh1
+    let reverb = 0.2
+    d1 
+        $ stack [
+            n synth - 0 # s "supersquare" # gain 0.7,
+            n synth + 0 # s "supersquare" # gain 0.7,
+            n synth - 5 # s "supersquare" # gain 0.7 
+            ]
+            # sustain 0.125
+            # room reverb
+    d2
+        $ stack [
+            n basss - 36 # s "supersquare " # gain 0.7 # lpf "500",
+            n basss - 36 # s "supersaw" # gain 0.7 # lpf "1000"
+        ]
+        # room reverb
+    d3 $ n drums # s "super808"  # gain 0.9 # room reverb
+    d4 $ n snare # s "superclap" # gain 1   # room reverb
+    d5 $ n hatss # s "superhat"  # gain 0.6 # room reverb

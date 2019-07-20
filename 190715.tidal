@@ -1,0 +1,39 @@
+
+hush
+
+setcps (120/120)
+
+do
+    let ss0 = ""
+    let ss1 = "[0]"
+    let ss2 = "[[2 0 2 0][2 5 7 3]]/2"
+    let ss3 = "[[2 [0 3]/2 2 0][2 5 [10 9]/2 ~]]/2"
+    let bs0 = ""
+    let bs1 = "[[0]]"
+    let bs2 = "[[~ 0]*2]"
+    let bs3 = "[[~ 0]*2 [0 ~]*2]/2"
+    let bd0 = ""
+    let bd1 = "[[0]*2]"
+    let bd2 = "[[0 ~ 0 ~ ][~ 0][~ 0][0]]/2"
+    let bd3 = "[[0 ~ 0 ~][0 1][0 ~][0 1]]/2"
+    let bd4 = "[[0 7 0 7][0 1][~ 0][0 1]]/2"
+    let synth = ss3
+    let basss = bs2
+    let drums = bd3
+    d1 
+        $ every 4 (rev)
+        $ stack [
+            n synth # s "supersquare" # gain 0.7 # hpf "100",
+            n synth # s "supersaw" # gain 0.6 # hpf "100",
+            n synth + 3 # s "supersaw" # gain 0.6 # hpf "100"
+            ]
+    d2
+        $ stack [
+            n basss - 24 # s "supersaw" # gain 0.6 # lpf "500",
+            n basss - 21 # s "supersquare" # gain 0.7 # lpf "1000"
+        ]
+    d3 
+        $ stack [
+            n drums # s "super808",
+            n drums + 3 # s "super808"
+        ]

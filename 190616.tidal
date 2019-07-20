@@ -1,0 +1,46 @@
+
+
+hush
+
+setcps (137/120)
+
+
+do
+  let ar0 = ""
+  let ar1 = "1 0 2 3"
+  d1
+    $ stack [
+      n ar1 # s "supersquare",
+      n "[~ 1]" # s "bd",
+      n "" # s "d"
+    ]
+    
+        
+do
+  setcps (137/120)
+  let bassDrum = s "[bd bd]"
+  let bassLine = s "[bass:3*4]"
+  let bassLine2 = s "[bass:3*3]"
+  let percussion = s "[[~ sn:3], [~ hh]*2]"
+  d1   
+    $ every 4 ( 
+        let bassLine = bassLine2 
+    )
+    $ stack [bassDrum, bassLine, percussion]
+
+
+do
+  let houseTempo = 130
+  let tempoToCyclesPerSecond tempo = tempo/120
+  setcps $ tempoToCyclesPerSecond 130
+  let bassDrum = s "[bd bd]"
+  let bassLine = s "[bass:3*4]"
+  let percussion = s "[[~ sn:3], [~ hh]*2]"
+  let mainLoop = stack [bassDrum, bassLine, percussion]
+  d1 $ mainLoop
+
+do
+  let progression p = p |+| n (slow 8 $ "0 5 10 7")
+  let melody = progression $ stut 4 0.3 1.033 $ fast 2 $ note "0 3 7 10" |+| note "12" # s "superpiano"
+  let bass = progression $ s "superpiano" |*| speed "0.5" |*| gain "1.0" # shape 0.6 # cut "-1"
+  d1 $ stack [melody, bass]
