@@ -1,17 +1,17 @@
 hush
 
-setcps (112/120)
+setcps (137/120)
 
 do
     let ss0 = ""
-    let ss1 = "[[2*2 4*2]*4 [2 [~ 4] 2 4]]/4"
-    let ss2 = "[2 4 5 7 9 7 5 4]/4"
-    let ss3 = "[2 4 5 7 9 7 5 4]*2"
-    let ss4 = "[[2 2] 4 7 5]/2"
+    let ss1 = "[[3*2 4*2]*4 [3 [~ 4] 3 4]]/8"
+    let ss2 = "[3 4 5 7 9 7 5 4]/4"
+    let ss3 = "[3 4 5 7 9 7 5 4]"
+    let ss4 = "[[3]*2 4 7 5]/2"
     let bs0 = ""
-    let bs1 = "[2]"
-    let bs2 = "[~ 2 ~ 5 2 ~ 4 ~]/2"
-    let bs3 = "[[2 4]*2 ~ 5 2]/2"
+    let bs1 = "[3]"
+    let bs2 = "[~ 3 ~ 5 3 ~ 4 ~]/2"
+    let bs3 = "[[3 4]*2 ~ 5 3]/2"
     let bd0 = ""
     let bd1 = "0"
     let bd2 = "[0]*2"
@@ -24,7 +24,8 @@ do
     let hh2 = "[0]*4"
     let hh3 = "[0 7]*4"
     let ww0 = ""
-    let ww1 = "[[2]*4[4]*4]/8"
+    let ww1 = "[[3]*4[4]*4]/8"
+    let ww2 = "[[3]*4[5]*4]/8"
     let synth = ss0
     let basss = bs0
     let drums = bd0
@@ -36,13 +37,13 @@ do
         $ every 8 ( 0.25 ~>)
         $ every 16 (rev)
         $ stack [
-            n synth - 0  # s "supersaw" # gain 0.6,
-            n synth + 7 # s "supersaw" # gain 0.6,
+            n synth - 0  # s "supersquare" # gain 0.6,
+            n synth + 7 # s "supersquare" # gain 0.6,
             n synth - 3  # s "supersaw" # gain 0.65 
             ]
-            # hpf "1400"
-            # lpf 3000
-            # sustain 0.05
+            # hpf "1000"
+            # lpf "3000"
+            # sustain 0.1
             # room reverb
     d2
         $ stack [
@@ -61,15 +62,15 @@ do
     d4 
         $ stack [
             n snare # s "superclap" # gain 1.1,  
-            n snare # s "supersnare" # gain 0.6   
+            n snare # s "supersnare" # gain 0.6 
         ]
         # room reverb
     d5 
         $ n hatss # s "superhat"  # gain 0.8 # room reverb
     d6 
         $ stack [
-            n waves - 12 # s "supersaw" # gain 0.6,
-            n waves - 15 # s "supersaw" # gain 0.6
+            n waves - 12 # s "supersaw" # gain 0.45,
+            n waves - 15 # s "supersaw" # gain 0.45
         ]
         # lpf "6000"
         # hpf "500"
