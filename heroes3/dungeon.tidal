@@ -1,0 +1,80 @@
+setcps (187/120)
+
+hush
+
+do
+    let ga1 = 0
+    let ga2 = 0
+    let ga3 = 0
+    let ga4 = 0
+    let ga5 = 0
+    let ga6 = 0
+    let ga1 = 1.1
+    let ga2 = 1.35
+    -- let ga3 = 0.8
+    let ga4 = 0.8
+    let ga5 = 0.8
+    let ga6 = 1
+    let brk = 16
+    let bit = 8
+    -- xfadeIn 1 8
+    d1
+        $ loopAt "<32>"
+        $ struct (iter 4 "t(4,2)")
+        $ s "dungeon:0"
+        # legato 1
+        # lpf 1500
+        -- # coarse (bit)
+        # gain ga1
+    -- xfadeIn 2 16
+    d2
+        $ rarely (# crush 5)
+        $ loopAt "<8>"
+        $ slice 4 "3 2 3 0"
+        $ s "dungeon:6"
+        # legato 1
+        # hpf 1200
+        -- # coarse (bit)
+        # gain ga2
+    d3  
+        -- $ palindrome
+        $ struct (iter 8 "t(2,4)")
+        $ loopAt "<8>"
+        $ chop 8
+        $ s "dungeon:5"
+        # coarse (bit)
+        # gain ga3
+        # attack "<0>"
+        # release "<2>"
+    d4
+        $ every brk (# s "")
+        $ struct (iter 8 "t(3,4)")
+        $ stack [
+            n "0"
+        ]
+        # s "btrap"
+        # coarse (bit)
+        # lpf 300
+        # gain ga4
+    d5
+        -- $ rarely (# crush 4)
+        $ every brk (# s "")
+        $ stack [
+            n "~ 2"
+        ]
+        # s "btrap"
+        # coarse (bit)
+        # lpf 7000
+        # gain ga5
+    d6  
+        $ every brk (# s "")
+        $ chunk 6 (|+ 2)
+        $ off 0.25 (# gain (ga6/1.5))
+        $ struct (iter 4 "t(2,8)")
+        $ stack [
+            n "6"
+        ]
+        # lpf 4000
+        # s "btrap"
+        # coarse (bit)
+        # gain ga6

@@ -19,7 +19,7 @@ do
         $ stack [
             n rmb + rm1 # s "supersquare" # speed 0.25 # gain 0.9,
             n ld1 # s "supersquare" # gain 0.9,
-            n bd1 # s "bneon" # gain 1.3,
-            n sn1 + 1 # s "bneon" # gain 1.2,
-            n hh1 + 7 # s "bneon" # gain 1.2
+            n bd0 # s "bneon" # gain 1.3,
+            n sn0 + 1 # s "bneon" # gain 1.2,
+            n hh0 + 7 # s "bneon" # gain 1.2
         ]

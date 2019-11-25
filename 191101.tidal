@@ -1,0 +1,73 @@
+setcps (86/120)
+
+hush
+
+do 
+    let ld0 = ""
+    let ld1 = "[2]"
+    let ld2 = "[2 7 3 2]/4"
+    let ld3 = "[2 10 2 8]/4"
+    let bg0 = ""
+    let bg1 = "2"
+    let bg2 = "[2 5 7 2]/4"
+    let bs0 = ""
+    let bs1 = "[8 2 4 2]/4"
+    let bd0 = ""
+    let bd1 = "0"
+    let sn0 = ""
+    let sn1 = "2"
+    let hh0 = ""
+    let hh1 = "6"
+    let lead = ld3 + 24
+    let back = bg2 + 12
+    let bass = bs1
+    let bdru = bd1
+    let snar = sn1
+    let hhat = hh1
+    let reverb = 0.1
+    let brk = 16
+    d1 
+        $ every brk (# s "")
+        $ euclid 3 8
+        $ stack [
+            n lead # s "bsteel" # hpf 500
+            ]
+        # room reverb
+    d2 
+        $ stack [
+            n back # s "bgsky"
+        ]
+        # room reverb
+    d3 
+        $ every 1 (0.25 ~>)
+        $ euclid 3 8
+        $ stack [
+            n bass # s "bfbass" # lpf 1000
+        ]
+        # gain 0.9
+        # sustain 0.25
+        # room reverb
+    d4  
+        $ every brk (# s "")
+        $ euclid 1 4
+        $ stack [
+            n bdru # s "btrap"
+        ]
+        # gain 0.8
+        # room reverb
+    d5 
+        $ every brk (# s "")    
+        $ every 1 (0.5 ~>)
+        $ stack [
+            n snar # s "btrap" # lpf 2000
+        ]
+        # speed 0.5
+        # room reverb
+    d6 
+        $ every brk (# s "")
+        $ every 1 (0.25 ~>)
+        $ euclid 2 4
+        $ stack [
+            n hhat # s "btrap"
+        ]
+        # room reverb

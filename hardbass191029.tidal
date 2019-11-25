@@ -1,0 +1,60 @@
+setcps (137/120)
+
+hush
+
+do
+    let hb0 = ""
+    let hb1 = "[8 7 4 3]/8"
+    let hb2 = "[8 7 4 9]/16"
+    let bd0 = ""
+    let bd1 = "0 0"
+    let sn0 = ""
+    let sn1 = "~ 2"
+    let hh0 = ""
+    let hh1 = "[8]"
+    let ch0 = ""
+    let ch1 = "[3 2 2 6]/4"
+    let ch2 = "[6 3 5 3]/4"
+    let hard = hb1
+    let bdru = bd1
+    let snre = sn1
+    let hhat = hh1
+    let chor = ch2
+    let x = 0
+    let brk = 16
+    d1
+        $ spin 2
+        $ linger 0.875
+        $ every brk (# s "")
+        $ stack [
+            n hard + 12 # s "bfbass" # hpf 1500
+        ]
+    d2
+        $ every brk (# s "")
+        $ stack [
+            n bdru # s "btrap",
+            n bdru # s "btrap" # lpf "250"
+        ]
+        # speed 0.5
+    d3
+        $ every brk (# s "")
+        $ stack [
+            n snre # s "btrap" 
+        ]
+        # gain 0.8
+    d4  
+        $ every 1 ( 0.25 ~>)
+        $ euclid 2 8
+        $ every brk (# s "")
+        $ stack [
+            n hhat + x # s "btrap"
+        ]
+    d5
+        $ spin 2
+        $ chop 8
+        $ chop 32
+        $ stack [
+            n chor # s "h2items"
+        ]
+        # gain 1.1
+

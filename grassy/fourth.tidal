@@ -1,0 +1,84 @@
+setcps (107/120)
+
+
+hush
+
+do 
+    let g1 = 0
+    let g2 = 0
+    let g3 = 0
+    let g4 = 0
+    let g5 = 0
+    let g6 = 0
+    let g7 = 0
+    -- let g1 = 1.0
+    -- let g2 = 0.9
+    -- let g3 = 1.0
+    -- let g4 = 0.9 
+    -- let g5 = 0.9
+    -- let g6 = 0.9
+    let g7 = 1
+    let brk = 16
+    let reverb = 0.1
+    d1
+        $ jux rev
+        -- $ off 0.25 (# gain 0.5)
+        -- $ off 0.25 (# gain 0.25)
+        $ struct (iter 8 "t(4,2)")
+        $ n (scale "jiao" "8 .. 15")
+        # s "bsteel"
+        # hpf 1000
+        # gain g1
+        # room reverb
+    d2
+        $ palindrome
+        -- $ off 0.25 (+| 12)
+        $ struct (iter 8 "t(4,2)")
+        $ n (scale "jiao" "8 .. 15")
+        # s "bfbass"
+        -- # sustain 1
+        # lpf 3500
+        # gain g2
+        # room reverb
+    d3
+        $ every 4 (# s "btchord")
+        $ off 0 (+| 5)
+        $ struct (iter 8 "t(2,1)")
+        $ n (scale "jiao" "8 .. 15")
+        # s "btchord"
+        -- # lpf 2000
+        # gain g3
+        # room reverb
+    d4 
+        $ every brk ( # s "")
+        $ struct (iter 8 "t(1,2)")
+        $ n "0"
+        # s "btrap"
+        -- # lpf 1800
+        # gain g4
+        # room reverb
+    d5 
+        $ every brk ( # s "")
+        $ struct (iter 1 "t(2,1)")
+        $ chop 4
+        $ n "2"
+        # s "btrap"
+        -- # lpf 1600
+        # gain g5
+        # room reverb
+    d6 
+        $ every brk ( # s "")
+        $ chunk 6 (+| 2)
+        $ struct (iter 2 "t(2,1)")
+        $ n "6"
+        # s "btrap"
+        # gain g6
+        # room reverb
+    xfadeIn 7 8
+        -- $ off 0 (+| 5)
+        $ struct (iter 1 "t(0.25,1)")
+        $ n (scale "jiao" "1 .. 8")
+        # s "bgsky"
+        -- # lpf 2000
+        # gain g7
+        # room reverb

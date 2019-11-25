@@ -1,0 +1,68 @@
+setcps (86/120)
+
+hush
+
+do
+    let g1 = 0
+    let g2 = 0
+    let g3 = 0
+    let g4 = 0
+    let g5 = 0
+    let g6 = 0
+    let g1 = 1.2
+    let g2 = 1.0
+    let g3 = 1.0
+    let g4 = 0.9
+    let g5 = 0.9
+    let g6 = 0.9
+    let fad = 1
+    let brk = 0
+    let bit = 0
+    xfadeIn 1 fad
+        $ almostNever (# s "")
+        -- $ off 0.5 (|+ 12)
+        $ struct (iter 8 "t(3,4)")
+        $ n (scale "harmonicMinor" "0 .. 7")
+        # s "bsteel"
+        # coarse bit
+        # vowel "o u y"
+    xfadeIn 2 fad 
+        $ struct (iter 4 "t(1,8)")
+        $ n (scale "harmonicMinor" "0 .. 7")
+        # s "bfbass"
+        # gain g2
+        # coarse bit
+        # lpf 6000
+        -- # attack "<1>"  
+        -- # release "<3>"
+    xfadeIn 3 fad 
+        $ almostAlways (# s "")
+        -- $ struct (iter 4 "t(1,8)")
+        $ n ("[0 1 2 3 4 5 6 7 9]/4")
+        # s "dio"
+        # gain g3
+        # coarse bit
+        # lpf 6000
+        # attack "<1>"  
+        # release "<3>"
+    d4
+        $ struct (iter 4 "t(1,8)")
+        $ n "0"
+        # s "btrap"
+        # coarse bit
+        # lpf 1000
+        # gain g4
+    d5  
+        $ struct (iter 1 "t(1,8)")
+        $ n "2"
+        # s "btrap"
+        # coarse bit
+        # lpf 2000
+        # gain g5
+    d6 
+        $ struct (iter 2 "t(2,8)")
+        $ n "8"
+        # s "btrap"
+        # coarse bit
+        # lpf 2000
+        # gain g6

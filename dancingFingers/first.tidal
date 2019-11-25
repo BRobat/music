@@ -1,0 +1,79 @@
+setcps (100/120)
+
+hush
+
+do 
+    let g1 = 0
+    let g2 = 0
+    let g3 = 0
+    let g4 = 0
+    let g5 = 0
+    let g6 = 0
+    -- let g1 = 1.1
+    let g2 = 1.0
+    -- let g3 = 0.8
+    -- let g4 = 0.9
+    let g5 = 0.9
+    -- let g6 = 1.0
+    let brk = 16
+    let fad = 1
+    let bit = 0
+    xfadeIn 1 fad 
+        $ every (brk*2) ( # s "")
+        $ jux rev
+        $ off 0.75 (|+ 5)
+        $ struct (iter 4 "t(1,1)")
+        $ n (scale "jiao" "7 .. 14")
+        # s "hardbass"
+        -- # legato 1
+        # attack "<0.3>"  
+        # release "<0.5>"
+        # hpf 1000
+        # gain g1
+        # coarse bit
+        -- # vowel "o u y"
+    xfadeIn 2 fad 
+        $ sometimes (# crush 4)
+        $ every brk ( # s "")
+        $ struct (iter 8 "t(2,8)")
+        $ n (scale "jiao" "0 .. 14")
+        # s "bfbass"
+        # gain g2
+        # coarse bit
+        # lpf 4000
+        # attack "<0.5>"  
+        # release "<1>"
+    xfadeIn 3 fad 
+        $ struct (iter 8 "t(2,4)")
+        $ n (scale "jiao" "7 .. 14")
+        # s "bgsky"
+        # gain (g3)
+        -- # coarse (bit*2)
+        # lpf 6000
+        # hpf 2000
+        # attack "<2>"  
+        # release "<16>"
+    d4
+        $ every brk ( # s "")
+        $ struct (iter 4 "t(2,8)")
+        $ n "0"
+        # s "btrap"
+        # coarse bit
+        # lpf 1000
+        # gain g4
+    d5  
+        $ every brk ( # s "")
+        $ struct (iter 1 "t(1,8)")
+        $ n "2"
+        # s "bneon"
+        # coarse bit
+        # lpf 3000
+        # gain g5
+    d6 
+        $ every brk ( # s "")
+        $ struct (iter 2 "t(2,8)")
+        $ n "6"
+        # s "bneon"
+        # coarse bit
+        # lpf 5000
+        # gain g6

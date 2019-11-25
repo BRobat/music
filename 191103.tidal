@@ -1,0 +1,85 @@
+setcps (57/120)
+
+hush
+
+do 
+    let ld0 = ""
+    let ld1 = "1"
+    let ld2 = "[0 1 1 1]/4"
+    let ld3 = "[0 0 4 0]/4"
+    let bg0 = ""
+    let bg1 = "0"
+    let bg2 = "4"
+    let bs0 = ""
+    let bs1 = "0"
+    let bd0 = ""
+    let bd1 = "0"
+    let sn0 = ""
+    let sn1 = "2"
+    let hh0 = ""
+    let hh1 = "6"
+    let lead = ld2
+    let back = bg2
+    let bass = bs1
+    let bdru = bd1
+    let snar = sn1
+    let hhat = hh1
+    let doom1 = "1 2 1 0"
+    let doom2 = "2 3 0 2"
+    let reverb = 0.2
+    let brk = 8
+    d1 
+        $ every brk (# s "")
+        $ slice 4 doom1
+        $ stack [
+            n lead # s "necro" 
+            ]
+        # gain 1.1
+        # lpf 5000
+        # legato 1
+        # room reverb
+    d2
+        $ every brk (# gain 1)
+        $ slice 4 "[2 1]"
+        $ stack [
+            n back # s "necro"
+        ]
+        # legato 1
+        # gain 0
+        # room reverb
+    d3 
+        $ every 1 (0.25 ~>)
+        $ euclid 4 4
+        $ stack [
+            n bass # s "bfbass" # lpf 500
+        ]
+        # gain 0.9
+        # room reverb
+    d4  
+        $ every brk (# s "")
+        $ every 1 (0.5 ~>)
+        $ euclid 2 4
+        $ stack [
+            n bdru # s "btrap"
+        ]
+        # gain 0.9
+        # room reverb
+    d5 
+        $ every brk (# s "")    
+        $ every 1 (0.5 ~>)
+        $ stack [
+            n snar # s "btrap" # lpf 2000
+        ]
+        # gain 0.8
+        # speed 0.5
+        # room reverb
+    d6 
+        $ every brk (# s "")
+        $ every 1 (0.25 ~>)
+        $ every 2 (0.25 ~>)
+        $ euclid 4 8
+        $ stack [
+            n hhat # s "btrap"
+        ]
+        # hpf 12000
+        # room reverb

@@ -1,0 +1,93 @@
+setcps (86/120)
+
+hush
+
+do 
+    let g1 = 0
+    let g2 = 0
+    let g3 = 0
+    let g4 = 0
+    let g5 = 0
+    let g6 = 0
+    let g7 = 0
+    let g1 = 1.0
+    -- let g2 = 1.0
+    -- let g3 = 1.0
+    -- let g4 = 1.0
+    -- let g5 = 1.0
+    -- let g6 = 0.9
+    -- let g7 = 1
+    let brk = 16
+    let tme = 1
+    let reverb = 0.2
+    xfadeIn 1 tme
+        $ every 16 ( # s "hardbass")
+        $ jux rev
+        $ off 0 (|+ (3 + sine))
+        $ off 0.25 (# gain (g1 / 2))
+        $ off 0.25 (# gain (g1 / 4))
+        $ struct (iter 8 "t(2,4)") 
+        $ n (scale "minor" "25 .. 32")
+        # s "bafizz"
+        -- # speed (1 + sine/8)
+        -- # lpf 1000
+        # legato 1
+        # gain g1
+        # room reverb
+    xfadeIn 2 tme
+        $ palindrome
+        -- $ off 0.25 (|+ 12)
+        $ struct (iter 8 "t(4,4)")
+        $ n (scale "minor" "1 .. 8")
+        # s "bafizz"
+        # legato 1
+        # lpf 1500
+        # gain g2
+        # room reverb
+    xfadeIn 3 tme
+        $ jux rev
+        $ off 0.125 (|+ sine)
+        $ off 0.25 (# gain (g3 / 2))
+        $ struct (iter 8 "t(2,8)")
+        $ n (scale "minor" "25 .. 32")
+        # s "borgan"
+        # legato 1
+        -- # lpf 2000
+        # gain g3
+        # room reverb
+    d4 
+        $ every brk ( # s "")
+        $ struct (iter 8 "t(2,1)")
+        $ n "0"
+        # s "btrap"
+        -- # lpf 1800
+        # gain g4
+        # room reverb
+    d5 
+        $ every brk ( # s "")
+        $ struct (iter 1 "t(1,1)")
+        -- $ chop 4
+        $ n "2"
+        # s "btrap"
+        -- # lpf 1600
+        # gain g5
+        # room reverb
+    d6 
+        $ every brk ( # s "")
+        -- $ chunk 6 (+| 2)
+        $ struct (iter 4 "t(4,2)")
+        $ n "6"
+        # s "btrap"
+        # gain g6
+        # room reverb
+    d7
+        $ loopAt "<1>"
+        -- $ off 0 (+| 5)
+        $ struct (iter 8 "t(2,1)") 
+        $ n "0"
+        # s ""
+        -- # hpf 1000
+        # sustain 1
+        # speed (scale "chromatic" "2 .. 12")
+        # gain g7
+        # room reverb

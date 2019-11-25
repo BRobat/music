@@ -1,0 +1,100 @@
+bmechi, bsteel, btrap, bgsky, bfbass, btchord
+
+hush
+
+setcps (86/120)
+
+setcps (120/120)
+
+do
+    let ld0 = ""
+    let ld1 = "[12 13 16 15]/4"
+    let ld2 = "[[12 13] [16 15] ~ [15]]/4"
+    let ld3 = "[[12 13]/2 [16 15]/2 ~ [15]]/4"
+    let ld4 = "[[[14 14 26 ~] [12 12 26 ~] [11 11 26 ~] [10 10 26 ~]]/4 [21 ~ ~ 20] [~ 19 ~ 17] [~ 14 17 19]]/2"
+    let ch0 = ""
+    let ch1 = "12"
+    let ch2 = "[12 15 16 13]/4"
+    let ch3 = "[14 12 11 10]/4"
+    let bs0 = ""
+    let bs1 = "3"
+    let bs2 = "[3 9]/2"
+    let bs3 = "[3 9 4 10]/4"
+    let bs4 = "[3 ~ 9 [4 10]/4]/4"
+    let bs5 = "[[14 ~ 14 ~] [14 14 ~ 14] [~ 14 ~ 14] [14 14 14 14]]/2"
+    let ns0 = ""
+    let ns1 = "[12 15]/4"
+    let ns2 = "[12 15 13 17]/4"
+    let bd0 = ""
+    let bd1 = "0"
+    let bd2 = "0 0"
+    let sn0 = ""
+    let sn1 = "~ 2"
+    let hh0 = ""
+    let hh1 = "[~ 8]"
+    let hh2 = "[~ 8]*2"
+    let hh3 = "[~ 8]*4"
+    let hh4 = "[6 8]*4"
+    let rmb = "[14 12 11 10]/8"
+    let lead = ld4
+    let chor = ch0 + 12
+    let bass = bs5 + rmb - 12
+    let nois = ns1
+    let bdru = bd1
+    let snar = sn1
+    let hhat = hh0
+    let edrums = 8
+    let reverb = 0
+    d1
+        $ spin 2
+        $ chop 8
+        $ stack [
+            n lead # s "btchord" # hpf "500"
+        ]
+        # gain 1.1
+        # sustain 0.25
+        # room reverb
+    d2
+        $ chop 4
+        $ linger 0.875
+        $ stack [
+            n chor + 3 # s "btchord" # hpf "1500" # gain 1
+        ]
+        # sustain 0.25
+        # room reverb
+    d3 
+        $ every 8 (rev)
+        $ stack [
+            n bass # s "bfbass" # lpf "1000" # gain 0.9
+        ]
+        # sustain 0.25
+        # room reverb
+    d4 
+        $ chop 4
+        $ stack [
+            n nois # "bgsky" # gain 1 # hpf "1000"
+        ]
+        # room reverb
+    d5
+        $ every edrums (# s "")
+        $ every 4 (0.125 ~>)
+        $ linger 0.75
+        $ stack [
+            n bdru # s "btrap" # lpf "1500"
+        ]
+        # gain 0.8
+        # room reverb
+    d6 
+        $ every edrums (# s "btrap")
+        $ chop 8
+        $ stack [
+            n snar # s "btrap" # lpf "2500"
+        ]
+        # gain 0.8
+        # room reverb
+    d7 
+        $ every edrums (# s "")
+        $ stack [
+            n hhat # s "btrap" # hpf "2500" # gain 0.9
+        ]
+        # room reverb

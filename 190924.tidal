@@ -6,7 +6,7 @@ setcps (100 /120)
 do
     let ss0 = ""
     let ss1 = "[5 7 [6] 9]"
-    let ss2 = ""
+    let ss2 = "[5 7][6 6 7 9]"
     let ss3 = ""
     let ss4 = ""
     let bs0 = ""
@@ -16,7 +16,7 @@ do
     let bd0 = ""
     let bd1 = "0"
     let bd2 = "[0]*2"
-    let bd2 = "[0]*2"
+    let bd3 = "[0]*4"
     let sn0 = ""
     let sn1 = "[~ 1]"
     let sn2 = "[~ [1 1] ~ 1]"
@@ -27,11 +27,11 @@ do
     let ww0 = ""
     let ww1 = "[[3]*4[5]*4]/8"
     let ww2 = "[[3]*4[5]*4]/8"
-    let synth = ss1
-    let basss = bs1
-    let drums = bd2
-    let snare = sn1
-    let hatss = hh3
+    let synth = ss0
+    let basss = bs0
+    let drums = bd0
+    let snare = sn0
+    let hatss = hh0
     let waves = ww0
     let reverb = 0.2
     d1 
@@ -55,7 +55,7 @@ do
     d3 
         $ stack [
             n drums # s "super808" # gain 0.85 # lpf "100",
-            n drums - 48 # s "superhex" # gain 0.55 # lpf "150",
+            n drums - 48 # s "superhex" # gain 0.75 # lpf "150",
             n drums # s "superkick" # gain 1
         ]
         # room reverb

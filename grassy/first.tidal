@@ -1,0 +1,63 @@
+setcps (86/120)
+
+hush
+
+do 
+    let g1 = 0
+    let g2 = 0
+    let g3 = 0
+    let g4 = 0
+    let g5 = 0
+    let g6 = 0
+    let g1 = 1
+    let g2 = 1
+    -- let g3 = 1
+    let g4 = 0.9
+    let g5 = 1
+    -- let g6 = 1
+    let brk = 16
+    d1
+        $ jux rev
+        $ off 0.75 (+| 12)
+        $ struct (iter 8 "t(2,2)")
+        $ n (scale "jiao" "0 .. 7")
+        # s "bsteel"
+        # hpf 1000
+        # gain g1
+    d2
+        $ palindrome
+        $ off 0.25 (+| 12)
+        $ struct (iter 4 "t(2,1)")
+        $ n (scale "jiao" "0 .. 7" |+ 3)
+        # s "bfbass"
+        # gain g2
+    d3
+        $ off 0 (+| 5)
+        $ struct (iter 2 "t(2,1)")
+        $ n (scale "minor" "0 .. 7")
+        # s "bsteel"
+        # lpf 2000
+        # gain g3
+    d4 
+        $ every brk ( # s "")
+        $ struct (iter 4 "t(2,2)")
+        $ n "0"
+        # s "btrap"
+        # lpf 800
+        # gain g4
+    d5 
+        $ every brk ( # s "")
+        $ struct (iter 1 "t(1,1)")
+        $ chop 4
+        $ n "2"
+        # s "btrap"
+        # lpf 600
+        # gain g5
+    d6 
+        $ every brk ( # s "")
+        $ chunk 6 (+| 2)
+        $ struct (iter 1 "t(2,1)")
+        $ n "6"
+        # s "btrap"
+        # hpf 12000
+        # gain g6

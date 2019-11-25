@@ -1,0 +1,61 @@
+setcps (66/120)
+
+hush
+
+
+
+
+d1
+    $ jux rev
+    $ off 0.25 (|+ 27)
+    -- $ off 0.25 (|+ (sine/2 + 5))
+    $ struct (iter 8 "t(1,1)") 
+    $ n (scale "major" "0 .. 7") 
+    # s "bsteel"
+    # legato 2
+    # hpf 1000
+
+d2 
+    $ palindrome
+    $ off 0.75 (|+ 27)
+    -- $ off 0 (+ 7)
+    $ struct (iter 8 "t(1,1)") 
+    $ stack [
+        n (scale "major" "0 .. 7")
+    ]
+    # s "bfbass"
+    # gain 1.1
+
+d3 
+    $ off 0 (|+ 15)
+    $ off 0 (|+ 18)
+    $ struct (iter 2 "t(2,1)") 
+    $ n (scale "major" "0 .. 7")
+    # s "bsteel"
+    # lpf 500
+    # gain 0.9
+
+d4 
+    $ struct (iter 2 "t(1,8)") 
+    $ stack [
+        n "0"
+    ]
+    # s "btrap"
+    # gain 0.9
+
+d5 
+    $ stack [
+        n "~ 2"
+    ]
+    # s "btrap"
+    # lpf 3000
+    # gain 0.8
+
+d6  
+    $ chunk 6 (|+ 2)
+    $ struct (iter 8 "t(2,8)") 
+    $ stack [
+        n "6"
+    ]
+    # s "btrap"
+    # gain 0.75
